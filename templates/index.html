@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script type = "text/javascript" src = "{{ url_for('static', filename = 'map.js') }}"> </script>
+        <script type = "text/javascript" src = "{{ url_for('static', filename = 'search.js') }}"> </script>
+        <link rel="stylesheet" href="./static/style.css">
+        <title>Solar Calculator</title>
+        <meta name="viewport" content="width= device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no">
+            
+            
+    </head>
+    <body>
+        <div class = "topbar">
+            
+             <button id="button">Search</button>
+             <input type="text"  placeholder="please enter an address" id="mapsearch" autocomplete="on">
+                  
+            <h2 class= "h2">Solar Calculator</h2>
+            
+          
+            
+            
+        </div>
+       
+       
+        
+        <div id= "sidebar" >
+        <button class="dropdown-btn">Dropdown
+            
+        </button>
+        </div>
+        <div id="map"></div>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDodNf2K_50gJQRmBP6sCpYFUtLsMSdfxQ&libraries=places&callback=initMap"
+            type="text/javascript"></script>
+        
+        
+        
+    </body>
+</html>
+
+
