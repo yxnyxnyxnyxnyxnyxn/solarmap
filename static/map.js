@@ -14,9 +14,9 @@ function initMap(){
     var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
     google.maps.event.addDomListener(document.getElementById('button'),'click',function(){
                                      
-                                     
+                                   
                                      var places = searchBox.getPlaces();
-                                    
+                                       console.log(places)
                                      var bounds = new google.maps.LatLngBounds();
                                      var i, place;
                                      for (i = 0;place=places[i];i++){
