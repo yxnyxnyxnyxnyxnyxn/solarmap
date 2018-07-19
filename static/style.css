@@ -91,7 +91,7 @@ ul {
     margin-right: 13%;
     
 }
-#coordinates, #info{
+#coordinates, #info, #threedpolygon{
     width: 100%;
     display: none;
     border-bottom: 2px solid white;
@@ -107,7 +107,7 @@ ul {
 
 
 
-#addcoor, #polygon{
+#addcoor, #polygon, #drawthreed{
     margin-left: 37%;
     background-color: white;
     border: 2px solid #555555;
@@ -120,7 +120,7 @@ ul {
     transition-duration: 0.4s;
 }
 
-#lat, #lng{
+#lat, #lng, #height{
     float: right;
     margin-right: 25%
 }

@@ -45,11 +45,23 @@
         </div>
        
         <li><button class="btn" id= "power"> Nominal Power </button> </li>
+        
         <div id = "info" style= "color:white">
            
         </div>
         
-        <li><button class="btn"> 3D Polygon </button> </li>
+        <li><button class="btn" id = "threed"> 3D Polygon </button> </li>
+        <div id = "threedpolygon">
+            <p> Height:
+            <input type="text"  id="height" ></p>
+            
+                    
+                    
+            <button id = "drawthreed"> Draw 3D Polygon </button>
+                    <br>
+                    <br>
+                    
+        </div>
         <li><button class="btn"> Area </button> </li>
 
         </ul>
@@ -65,6 +77,13 @@
                         $("#info").toggle();
                                                   
                 });
+            });
+            
+            $(document).ready(function(){
+                    $("#threed").click(function(){
+                            $("#threedpolygon").toggle();
+                                                
+                            });
             });
             
         </script>

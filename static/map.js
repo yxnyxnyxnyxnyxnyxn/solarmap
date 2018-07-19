@@ -1,6 +1,6 @@
 
 //option: clear polygon
-var markers = [];
+var markers = [], coordinates= [];
 var polygon;
 var latc,lonc;
 function initMap(){
@@ -50,6 +50,7 @@ function initMap(){
                                                                 
                                      });
                                      markers.push(marker.getPosition());
+                                     coordinates.push([lat,lng]);
                                      bounds_tmp.extend(marker.getPosition());
                                      map.fitBounds(bounds_tmp);
 
@@ -71,7 +72,7 @@ function initMap(){
                                      
 
     });
-    google.maps.event.addDomListener(document.getElementById('power'),'click',function()
+    google.maps.event.addDomListener(document.getElementById('power'),'click',function(){
                                      const area = google.maps.geometry.spherical.computeArea(polygon.getPath());
                                      const  date = new Date();
                                      const months = [];
@@ -105,8 +106,70 @@ function initMap(){
                                      
                                      
     });
-
     
+    google.maps.event.addDomListener(document.getElementById('drawthreed'),'click',function(){
+                                     const height = parseFloat(document.getElementById('height').value);
+                                     var pairs = [],
+                                     polygons = [];
+                                     
+                                     
+                                     // build line pairs for each wall
+                                     for (var i=0; i<coordinates.length; i++) {
+                                     
+                                     var point = coordinates[i],
+                                     otherIndex = (i == coordinates.length-1) ? 0 : i+1,
+                                     otherPoint = coordinates[otherIndex];
+                                     
+                                     pairs.push([point, otherPoint]);
+                                     }
+                                     
+                                     // draw excrusions
+                                     for (var i=0; i<pairs.length; i++) {
+                                     
+                                     var first = pairs[i][0],
+                                     second = pairs[i][1],
+                                     wallCoordinates =  [
+                                                         new google.maps.LatLng(first[0],first[1]),
+                                                         new google.maps.LatLng(first[0]+height,first[1]),
+                                                         new google.maps.LatLng(second[0]+height,second[1]),
+                                                         new google.maps.LatLng(second[0],second[1])
+                                                         ],
+                                     polygon = new google.maps.Polygon({
+                                                                       paths: wallCoordinates,
+                                                                       strokeColor: 'black',
+                                                                       strokeOpacity: 0.8,
+                                                                       strokeWeight: 2,
+                                                                       fillColor: 'black',
+                                                                       fillOpacity: 0.35,
+                                                                       zIndex: i
+                                                                       });
+                                     
+                                     polygon.setMap(map);
+                                     
+                                     polygons.push(polygon);
+                                     }
+                                     
+                                     roof = []
+                                     for (var i = 0; i < coordinates.length;i++){
+                                        roof.push(new google.maps.LatLng(coordinates[i][0]+height,coordinates[i][1]));
+                                     }
+                                     
+                                     polygon = new google.maps.Polygon({
+                                                                       paths: roof,
+                                                                       strokeColor: 'blue',
+                                                                       strokeOpacity: 0.8,
+                                                                       strokeWeight: 2,
+                                                                       fillColor: 'blue',
+                                                                       fillOpacity: 0.35,
+                                                                       zIndex: i
+                                                                       });
+                                     
+                                     polygon.setMap(map);
+
+                                     
+                                     
+
+    });
     
 }
 
