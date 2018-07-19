@@ -9,7 +9,7 @@
  */
 var markers = [], coordinates= [], clear_array = [];
 var polygon;
-var latc,lonc;
+
 
 function initMap(){
     var default_location =  {lat: 42.38, lng:-71.08};
@@ -48,10 +48,8 @@ function initMap(){
     
     /* Set marker for the coordinate(user input)*/
     google.maps.event.addDomListener(document.getElementById('addcoor'),'click',function(){
-            latc =document.getElementById('lat').value;
-            lonc =document.getElementById('lng').value;
-            var lat = parseFloat(latc);
-            var lng = parseFloat(lonc);
+            var lat = parseFloat(document.getElementById('lat').value);
+            var lng = parseFloat(document.getElementById('lng').value);
             var marker = new google.maps.Marker({
                     position: {lat:lat,lng:lng},
                     map: map,
@@ -100,14 +98,14 @@ function initMap(){
     google.maps.event.addListener(map, 'click',function(event){
         placeMarker(event.latLng);
         markers.push(event.latLng);
-        
     });
     function placeMarker(location){
         var marker = new google.maps.Marker({
             position: location,
             map: map
         });
-        clear_array.push(marker)
+        clear_array.push(marker);
+        coordinates.push([marker.getPosition().lat(),marker.getPosition().lng()])
     }
     /* Click "Nominal Power" button to get information of nominal power of the solar installation
      Assumption: the polygon's area is less then 10000000 and the polygon's location is in United States
@@ -136,7 +134,7 @@ function initMap(){
             /* fetch nrel api
                 get information about the solar radiation at polygon location
              */
-            var url ="https://developer.nrel.gov/api/pvwatts/v6.json?api_key=o3bfKfFAnSM8PRsTfUpYtHS1NKAoBxlqwrbBZ7Mk&format=JSON&lat="+ latc+"&lon=" +lonc+"&system_capacity=4&azimuth=180&tilt=40&array_type=1&module_type=1&losses=10"
+            var url ="https://developer.nrel.gov/api/pvwatts/v6.json?api_key=o3bfKfFAnSM8PRsTfUpYtHS1NKAoBxlqwrbBZ7Mk&format=JSON&lat="+ markers[0].lat()+"&lon=" +markers[0].lng()+"&system_capacity=4&azimuth=180&tilt=40&array_type=1&module_type=1&losses=10"
             fetch(url)
                 .then ((resp)=>resp.json())
                 .then(function(data){
