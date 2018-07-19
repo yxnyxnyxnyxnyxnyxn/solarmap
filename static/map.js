@@ -7,7 +7,7 @@
  polygon: polygon created by user
  latc: lat info; lonc:lon info
  */
-var markers = [], coordinates= [];
+var markers = [], coordinates= [], clear_array = [];
 var polygon;
 var latc,lonc;
 
@@ -34,11 +34,6 @@ function initMap(){
             var places = searchBox.getPlaces();
             var bounds = new google.maps.LatLngBounds();
             var i, place;
-            /*var marker = new google.maps.Marker({
-                position: place.getPosition(),
-                map: map,
-                drauggable: true,
-            });*/
             // Adjust map to show the search result
             for (i = 0;place=places[i];i++){
                 bounds.extend(place.geometry.location);
@@ -61,10 +56,10 @@ function initMap(){
                     position: {lat:lat,lng:lng},
                     map: map,
                     drauggable: true,
-                            
             });
             //Adjust map to show all the markers
             markers.push(marker.getPosition());
+            clear_array.push(marker);
             coordinates.push([lat,lng]);
             bounds_tmp.extend(marker.getPosition());
             map.fitBounds(bounds_tmp);
@@ -72,6 +67,7 @@ function initMap(){
                                      
     /* Click "Draw Polygon" button to draw polygon */
     google.maps.event.addDomListener(document.getElementById('polygon'),'click',function(){
+            console.log("test")
             polygon= new google.maps.Polygon({
                     paths: markers,
                     strokeColor: '#FF0000',
@@ -83,7 +79,39 @@ function initMap(){
             polygon.setMap(map);
     });
     
-    /* Click "Nominal Power" button to get information of nominal power of the solar installation */
+    /* Click "Clear button to delete markers and polygon */
+   google.maps.event.addDomListener(document.getElementById('clear'),'click',function(){
+            
+            //remove markers
+            for (var i = 0 ; i < clear_array.length;i++){
+                clear_array[i].setMap(null);
+            }
+            //remove polygon
+            if (polygon != undefined){
+                polygon.setMap(null);
+            }
+            //empty markers array
+            markers = []
+            clear_array = []
+            
+    });
+    
+    /* Add marker to map on click */
+    google.maps.event.addListener(map, 'click',function(event){
+        placeMarker(event.latLng);
+        markers.push(event.latLng);
+        
+    });
+    function placeMarker(location){
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        clear_array.push(marker)
+    }
+    /* Click "Nominal Power" button to get information of nominal power of the solar installation
+     Assumption: the polygon's area is less then 10000000 and the polygon's location is in United States
+     */
     google.maps.event.addDomListener(document.getElementById('power'),'click',function(){
             
             // get area of the polygon
