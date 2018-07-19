@@ -3,11 +3,11 @@
 <html>
     <head>
         <script type = "text/javascript" src = "{{ url_for('static', filename = 'map.js') }}"> </script>
-        <script type = "text/javascript" src = "{{ url_for('static', filename = 'search.js') }}"> </script>
+       
         <link rel="stylesheet" href="./static/style.css">
         <title>Solar Calculator</title>
         <meta name="viewport" content="width= device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no">
-            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             
     </head>
     <body>
@@ -28,18 +28,55 @@
         <div id= "sidebar" >
             
         <ul>
-        <li><button class="dropdown-btn"> Polygon Coordinates </button> </li>
-        <li><button class="dropdown-btn"> Nominal Power </button> </li>
-        <li><button class="dropdown-btn"> 3D Polygon </button> </li>
-        <li><button class="dropdown-btn"> Area </button> </li>
+        <li><button class="btn" id = "latlong"> Polygon Coordinates </button> </li>
+        <div id = "coordinates">
+            <p> Lat:
+            <input type="text"  id="lat" ></p>
+            <p>Lng:
+            <input type="text"  id="lng"  ></p>
+            
+            <button id = "addcoor" > Add Coordinate</button>
+            <br>
+            <br>
+            <button id = "polygon"> Draw Polygon </button>
+            <br>
+            <br>
+            
+        </div>
+       
+        <li><button class="btn" id= "power"> Nominal Power </button> </li>
+        <div id = "info" style= "color:white">
+           
+        </div>
+        
+        <li><button class="btn"> 3D Polygon </button> </li>
+        <li><button class="btn"> Area </button> </li>
 
         </ul>
-        
+        <script>
+            $(document).ready(function(){
+                $("#latlong").click(function(){
+                        $("#coordinates").toggle();
+                        
+                });
+            });
+            $(document).ready(function(){
+                $("#power").click(function(){
+                        $("#info").toggle();
+                                                  
+                });
+            });
+            
+        </script>
         </button>
+        
         </div>
+        
         <div id="map"></div>
         
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDodNf2K_50gJQRmBP6sCpYFUtLsMSdfxQ&libraries=places&callback=initMap"
+        
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDodNf2K_50gJQRmBP6sCpYFUtLsMSdfxQ&libraries=places,geometry&callback=initMap"
             type="text/javascript"></script>
         
         

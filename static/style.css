@@ -24,7 +24,10 @@ html, body {
     
 }
 
-
+p{
+    text-indent: 7%;
+    color:white;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -51,7 +54,7 @@ ul {
     color: white
 }
 
-.dropdown-btn {
+.btn {
     padding: 14px;
     text-decoration: none;
     color: white;
@@ -65,7 +68,8 @@ ul {
     
 }
 
-.dropdown-btn:hover{
+
+.btn:hover{
     background-color: #f1f1f1;
     color: black
 }
@@ -87,12 +91,39 @@ ul {
     margin-right: 13%;
     
 }
+#coordinates, #info{
+    width: 100%;
+    display: none;
+    border-bottom: 2px solid white;
+    
+    
+}
+
 
 #button:hover{
     background-color: gray;
     color: white
 }
 
+
+
+#addcoor, #polygon{
+    margin-left: 37%;
+    background-color: white;
+    border: 2px solid #555555;
+    color: black;
+    font-size:12px;
+    text-decoration: none;
+    display: inline-block;
+    width: 120px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#lat, #lng{
+    float: right;
+    margin-right: 25%
+}
 .topbar input[type=text]{
     float: right;
     padding: 10px;
