@@ -1,5 +1,12 @@
+/* 
+ API Usage:
+ - map javascript api >>> polygon,place,geometry library https://developers.google.com/maps/documentation/javascript/tutorial
+ - Nrel api >>> https://developer.nrel.gov
+ */
 
-/*markers: store all the marker information
+
+/*
+ markers: store all the marker information
  coordinates: store coordinate of all the marker
  polygon: polygon created by user
  latc: lat info; lonc:lon info
