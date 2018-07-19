@@ -1,8 +1,4 @@
-/* 
- API Usage:
- - map javascript api >>> polygon,place,geometry library https://developers.google.com/maps/documentation/javascript/tutorial
- - Nrel api >>> https://developer.nrel.gov
- */
+
 
 
 /*

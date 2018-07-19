@@ -1,7 +1,29 @@
-Features:
-1. exlpore a web map(done)
-2. Search for address
-3. Draw a solar installation(polygon) over an arbitrary area
-4. Get the nominal power of the drawn solar installation
+#Instruction
+- Install pip
 
+    sudo easy_install pip
 
+- cd to directory 
+
+- Install dependencies: flask
+    pip install -r requirements.txt
+
+- start server with: 
+    
+    python main.py
+
+- open http://127.0.0.1:5000/
+
+# Tech
+-Google Maps API  >>> https://developers.google.com/maps/documentation/javascript/tutorial
+    - polygon library
+    - place library
+    - geometry library
+ 
+- NREL(National Renewal Energy Laboratory) API >>> https://developer.nrel.gov
+
+-Back-end: Python 2.7, flask 
+
+-Font-End: Javascript
+
+#Issue
