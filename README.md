@@ -27,3 +27,9 @@
 -Font-End: Javascript
 
 #Issue
+1. Unfinished Projection Area function
+2. Missing test 
+3. cannot clear or update 3D polygon
+4. Cannot select/remove specific markers
+5. Code need to be refactored
+6. Duplicate code 
