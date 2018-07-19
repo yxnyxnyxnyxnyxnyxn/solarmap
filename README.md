@@ -1,4 +1,4 @@
-#Instruction
+# Instruction
 - Install pip
 
     sudo easy_install pip
@@ -26,7 +26,7 @@
 
 -Font-End: Javascript
 
-#Issue
+# Issue
 1. Unfinished Projection Area function
 2. Missing test 
 3. cannot clear or update 3D polygon
